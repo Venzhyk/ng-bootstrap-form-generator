@@ -1,5 +1,5 @@
 # npmignore
-src/
+dist/
 typings/
 node_modules/
 npm-debug.log
@@ -13,3 +13,7 @@ typings.json
 # Ignored files
 *.ts
 !*.d.ts
+
+*.tgz
+.editorconfig
+tslint.json

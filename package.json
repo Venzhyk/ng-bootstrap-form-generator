@@ -1,5 +1,5 @@
 {
-  "name": "form-generator",
+  "name": "ng-bootstrap-form-generator",
   "description": "Angular 2 form generator. Library provides Angular components that help quickly generate Bootstrap 4 form from JSON object. Supports validators, help message, error message. Based on ReactiveFormsModule from @angular/forms.",
   "version": "0.1.0",
   "license": "MIT",
@@ -18,22 +18,21 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm pack  ",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
-    "build": " && tsc /src"
+    "prepublish": "tsc"
   },
   "private": true,
   "dependencies": {
-   
+    "@angular/common": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/forms": "^2.3.1"
   },
   "devDependencies": {
-     "@angular/common": "^2.3.1",
-    "@angular/compiler": "^2.3.1",
-    "@angular/core": "^2.3.1",
-    "@angular/forms": "^2.3.1",
+    "@angular/compiler": "^2.3.1",    
     "@angular/http": "^2.3.1",
     "@angular/platform-browser": "^2.3.1",
     "@angular/platform-browser-dynamic": "^2.3.1",
