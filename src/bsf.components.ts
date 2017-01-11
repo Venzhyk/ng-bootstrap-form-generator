@@ -7,14 +7,15 @@ import {
   FormControl,
   ValidatorFn,
   AsyncValidatorFn,
-  Validators
+  Validators,
+  AbstractControl
 } from '@angular/forms';
 
 import { BsfControl } from './bsf.control';
 import { BsfControlOptions, BsfSelectOptions } from './bsf.options';
 
 @Component({
-selector: 'bsf-form',
+  selector: 'bsf-form',
   template: `
     <div [formGroup]="form" >
       <template  ngFor let-control [ngForOf]='bsfControls'>
@@ -45,7 +46,7 @@ export class BsfGroupComponent implements OnInit {
 
   @Input()
   get ngModel(): any { return this.form ? this.form.value : null; };
-  set ngModel(value: any) { this.form.setValue(value, { onlySelf: false, emitEvent: true }); this._cd.markForCheck();}
+  set ngModel(value: any) { this.form.setValue(value, { onlySelf: false, emitEvent: true }); this._cd.markForCheck(); }
 
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
 
@@ -55,7 +56,7 @@ export class BsfGroupComponent implements OnInit {
   }
 
   initFormGroup(options: BsfControlOptions[]) {
-    let formControls = {};
+    let formControls: { [key: string]: FormControl; } = {};
 
     for (let controlOptions of options) {
       let control = new BsfControl(controlOptions);
@@ -109,9 +110,9 @@ export class BsfBaseControlComponent {
     });
   }
   // Uncomment to see how many checks performs on edit
-   ngDoCheck() {
-     console.log('BaseControl ngDoCheck: ' + this.c.field);
-   }
+  ngDoCheck() {
+    console.log('BaseControl ngDoCheck: ' + this.c.field);
+  }
 
 }
 

@@ -36,7 +36,7 @@ export class BsfControl extends BsfControlOptions {
 
   }
 
-  private _onStatusChanged(status) {
+  private _onStatusChanged(status: string) {
     if (this.fc.errors === null) {
       this.errors = [];
       return;
@@ -52,7 +52,7 @@ export class BsfControl extends BsfControlOptions {
   }
 
   applyOptions(fc: FormControl, o: BsfControlOptions) {
-    Object.assign(this, o, {elId:  o.elId || o.field});
+    Object.assign(this, o, { elId: o.elId || o.field });
     this.validationMessage = Object.assign({}, ValidationMessage.DEFAULT, o.validationMessage);;
     if (o.disabled) {
       fc.disable({ onlySelf: true, emitEvent: false });

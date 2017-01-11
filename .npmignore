@@ -1,0 +1,15 @@
+# npmignore
+src/
+typings/
+node_modules/
+npm-debug.log
+.gitignore
+gulpfile.js
+todo.txt
+tsconfig.json
+typings.json
+*.log
+
+# Ignored files
+*.ts
+!*.d.ts
