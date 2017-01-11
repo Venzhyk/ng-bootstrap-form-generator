@@ -24,6 +24,7 @@ export class BsfGroupCustomContentComponent { }
       <ng-content select="bsf-before"></ng-content>
       <template  ngFor let-control [ngForOf]='bsfControls'>
         <div [ngSwitch]="control.type">
+          <bsf-hidden *ngSwitchCase="'hidden'" [control]='control' [form]='form'> </bsf-hidden>
           <bsf-checkbox *ngSwitchCase="'checkbox'" [control]='control' [form]='form'> </bsf-checkbox>
           <!-- <bsf-radio *ngSwitchCase="'radio'" [control]='control' [form]='form'> </bsf-radio>-->
           <bsf-select *ngSwitchCase="'select'" [control]='control' [form]='form'> </bsf-select>
@@ -37,7 +38,7 @@ export class BsfGroupCustomContentComponent { }
 })
 export class BsfGroupComponent implements OnInit {
   form: FormGroup;
-  bsfControls: BsfControl[] = [];
+  private bsfControls: BsfControl[] = [];
 
   private _options: any;
   @Input()
@@ -50,7 +51,10 @@ export class BsfGroupComponent implements OnInit {
 
   @Input()
   get value(): any { return this.form ? this.form.value : null; };
-  set value(value: any) { this.form.patchValue(value, { onlySelf: false, emitEvent: true }); this._cd.markForCheck(); }
+  set value(value: any) {
+    this.form.patchValue(value, { onlySelf: true, emitEvent: true });
+    this._cd.markForCheck();
+  }
 
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
@@ -89,6 +93,7 @@ export class BsfGroupComponent implements OnInit {
 
       <ng-content></ng-content>
 
+
       <div *ngFor='let error of c.errors' class="form-control-feedback">{{error}}</div>
       <small [id]='c.field + "-help-text"' class="form-text text-muted" *ngIf='c.helpText' >{{c.helpText}}</small>
       <small [id]='c.field + "-help-text"' class="form-text text-muted" *ngIf='!c.helpText && c.helpTextHtml' 
@@ -97,13 +102,14 @@ export class BsfGroupComponent implements OnInit {
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfBaseControlComponent {
+export class BsfBaseControlComponent implements OnInit {
+  private _prev: any;
   @Input('control') c: BsfControl;
 
   constructor(private _cd: ChangeDetectorRef) {
   }
 
-  _prev: any;
+
   ngOnInit() {
     this._prev = this.c.fc.value;
     this.c.fc.valueChanges.subscribe((next) => {
@@ -114,9 +120,9 @@ export class BsfBaseControlComponent {
     });
   }
   // Uncomment to see how many checks performs on edit
-  ngDoCheck() {
-    console.log('BaseControl ngDoCheck: ' + this.c.field);
-  }
+  // ngDoCheck() {
+  //   console.log('BaseControl ngDoCheck: ' + this.c.field);
+  // }
 
 }
 
@@ -132,6 +138,21 @@ export class BsfBaseControlComponent {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BsfInputControlComponent {
+  @Input('control') c: BsfControl;
+  @Input() form: FormGroup;
+
+}
+
+@Component({
+  selector: 'bsf-hidden',
+  template: `
+    <div [formGroup]='form'>
+      <input class="form-control" [bsfControl]='c' [formControlName]='c.field' type='hidden'>
+    </div>
+`,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class BsfHiddenInputControlComponent {
   @Input('control') c: BsfControl;
   @Input() form: FormGroup;
 
@@ -170,12 +191,12 @@ export class BsfCheckboxControlComponent {
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfRadioControlComponent {
+export class BsfRadioControlComponent implements OnInit {
   @Input('control') c: BsfControl;
   @Input() form: FormGroup;
 
   ngOnInit() {
-    this.c.elId = this.c.elId + "-" + this.c.defaultValue;
+    this.c.elId = this.c.elId + '-' + this.c.defaultValue;
   }
 }
 

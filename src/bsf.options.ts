@@ -23,6 +23,9 @@ export class BsfControlOptions {
   helpTextHtml?: string = '';
   disabled?: boolean;
   required?: boolean;
+  maxlength?: number;
+  minlength?: number;
+  requiredTrue?: boolean;
 
   select?: BsfSelectOptions;
 

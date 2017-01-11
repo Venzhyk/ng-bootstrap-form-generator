@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 
 import { ValidationMessage, ValidationMessageFn } from './ValidationMessage';
-import { BsfControlOptions } from './bsf.options';
+import { BsfControlOptions, InputType } from './bsf.options';
 
 
 
@@ -37,7 +37,7 @@ export class BsfControl extends BsfControlOptions {
   }
 
   private _onStatusChanged(status: string) {
-    if (this.fc.errors === null) {
+    if (this.fc.errors === null || this.fc.pristine) {
       this.errors = [];
       return;
     }
@@ -53,15 +53,25 @@ export class BsfControl extends BsfControlOptions {
 
   applyOptions(fc: FormControl, o: BsfControlOptions) {
     Object.assign(this, o, { elId: o.elId || o.field });
-    this.validationMessage = Object.assign({}, ValidationMessage.DEFAULT, o.validationMessage);;
+    this.validationMessage = Object.assign({}, ValidationMessage.DEFAULT, o.validationMessage);
     if (o.disabled) {
       fc.disable({ onlySelf: true, emitEvent: false });
     }
+    let validators: ValidatorFn[] = fc.validator ? [fc.validator] : [];
+
     if (o.required) {
-      fc.setValidators(Validators.required);
+      validators.push(Validators.required);
     }
-
+    if (o.maxlength) {
+      validators.push(Validators.maxLength(o.maxlength));
+    }
+    if (o.minlength) {
+      validators.push(Validators.minLength(o.minlength));
+    }
+    if (o.requiredTrue) {
+      validators.push(Validators.requiredTrue);
+    }
+    fc.setValidators(Validators.compose(validators));
   }
-
 }
 

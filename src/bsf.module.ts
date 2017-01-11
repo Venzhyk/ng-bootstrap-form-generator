@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   BsfBaseControlComponent,
   BsfInputControlComponent,
+  BsfHiddenInputControlComponent,
   BsfCheckboxControlComponent,
   BsfRadioControlComponent,
   BsfSelectControlComponent,
@@ -26,6 +27,7 @@ import { KeysPipe } from './keys.pipe';
     BsfGroupCustomContentComponent,
     BsfBaseControlComponent,
     BsfInputControlComponent,
+    BsfHiddenInputControlComponent,
     BsfCheckboxControlComponent,
     BsfRadioControlComponent,
     BsfSelectControlComponent,
