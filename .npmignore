@@ -2,6 +2,7 @@
 dist/
 typings/
 node_modules/
+tests/
 npm-debug.log
 .gitignore
 gulpfile.js

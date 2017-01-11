@@ -14,10 +14,14 @@ import {
 import { BsfControl } from './bsf.control';
 import { BsfControlOptions, BsfSelectOptions } from './bsf.options';
 
+@Component({ selector: 'bsf-before,bsf-after', template: '<ng-content></ng-content>' })
+export class BsfGroupCustomContentComponent { }
+
 @Component({
   selector: 'bsf-form',
   template: `
     <div [formGroup]="form" >
+      <ng-content select="bsf-before"></ng-content>
       <template  ngFor let-control [ngForOf]='bsfControls'>
         <div [ngSwitch]="control.type">
           <bsf-checkbox *ngSwitchCase="'checkbox'" [control]='control' [form]='form'> </bsf-checkbox>
@@ -26,7 +30,7 @@ import { BsfControlOptions, BsfSelectOptions } from './bsf.options';
           <bsf-input *ngSwitchDefault [control]='control' [form]='form'></bsf-input>
         </div>
       </template >
-      <ng-content></ng-content>
+      <ng-content select="bsf-after"></ng-content>
     </div>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -45,10 +49,10 @@ export class BsfGroupComponent implements OnInit {
   }
 
   @Input()
-  get ngModel(): any { return this.form ? this.form.value : null; };
-  set ngModel(value: any) { this.form.setValue(value, { onlySelf: false, emitEvent: true }); this._cd.markForCheck(); }
+  get value(): any { return this.form ? this.form.value : null; };
+  set value(value: any) { this.form.patchValue(value, { onlySelf: false, emitEvent: true }); this._cd.markForCheck(); }
 
-  @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private _cd: ChangeDetectorRef) { }
   ngOnInit() {
@@ -70,7 +74,7 @@ export class BsfGroupComponent implements OnInit {
 
     this.form = new FormGroup(formControls);
 
-    this.form.valueChanges.subscribe(this.ngModelChange);
+    this.form.valueChanges.subscribe(this.valueChange);
   }
 
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -9,13 +9,11 @@ import {
   BsfRadioControlComponent,
   BsfSelectControlComponent,
   BsfGroupComponent,
+  BsfGroupCustomContentComponent,
   BsfControlDirective
 } from './bsf.components';
 import { BsfControlOptions } from './bsf.options';
 import { KeysPipe } from './keys.pipe';
-
-export * from './index';
-
 
 @NgModule({
   imports: [
@@ -23,7 +21,9 @@ export * from './index';
     ReactiveFormsModule,
   ],
   declarations: [
+
     BsfGroupComponent,
+    BsfGroupCustomContentComponent,
     BsfBaseControlComponent,
     BsfInputControlComponent,
     BsfCheckboxControlComponent,
@@ -34,6 +34,7 @@ export * from './index';
   ],
   exports: [
     BsfGroupComponent,
+    BsfGroupCustomContentComponent
   ]
 })
 export class BootstrapFormGeneratorModule { }
