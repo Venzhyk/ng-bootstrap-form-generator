@@ -154,4 +154,4 @@ Also, you can add your own header and footer into `bsf-form`
 
 ```
 
-[[https://github.com/Venzhyk/ng-bootstrap-form-generator.git/blob/master/demo.png|alt=demo-form]]
+![demo-form](https://raw.githubusercontent.com/Venzhyk/ng-bootstrap-form-generator/master/demo-form.png)
