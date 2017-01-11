@@ -6,7 +6,7 @@ Form config is a array of Form Control objects that describes input fields.
 
 ## Main Form Control Properties
 
-[see: `BsfControlOptions`](.\docs\src\bsf.options.ts)
+[see: `BsfControlOptions`](https://github.com/Venzhyk/ng-bootstrap-form-generator/blob/master/src/bsf.options.ts)
 
 * field - name of model field. It is the only required property for all Form Controls
 * type - control type, by default it's input 
