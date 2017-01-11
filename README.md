@@ -1,7 +1,7 @@
 
 # Bootstrap4 + Angular2 Form Generator
 
-Generate simple Bootstrap4 forms from Json object
+Generate simple Bootstrap4 forms from JavaScript
 
 Library provides Angular components that help quickly generate Bootstrap Form from JavaScript object. 
 Component supports validators, help messages, and error messages. 

@@ -1,5 +1,11 @@
 # Bootstrap4 + Angular2 Form Generator
 
+Library provides Angular components that help quickly generate Bootstrap Form from JavaScript object. 
+
+Live Demo
+<iframe style="width: 100%; height: 600px" src="http://embed.plnkr.co/oFBOR6C1ylYquLA8oA4G/" frameborder="0" allowfullscren="allowfullscren"></iframe>
+
+
 # Form Config
 
 Form config is a array of Form Control objects that describes input fields.
