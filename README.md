@@ -9,3 +9,18 @@ Supports validators, help message, and error message.
 Based on ReactiveFormsModule from @angular/forms.
 Available custom and all angular built in validators.
 
+## Install
+
+### Install npm package
+
+### Add module
+
+### Add bootstrap 
+
+
+## sd
+
+
+
+
+## Known isues
