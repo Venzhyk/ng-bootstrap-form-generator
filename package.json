@@ -1,7 +1,7 @@
 {
   "name": "ng-bootstrap-form-generator",
   "description": "Angular 2 + Bootstrap 4 Form Generator. Library provides Angular components that help quickly generate Bootstrap Form from JavaScript object. Component supports validators, help messages, and error messages.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "angular-cli": {},
   "keywords": [
@@ -19,6 +19,9 @@
   "repository": {
      "type": "git",
      "url": "https://github.com/Venzhyk/ng-bootstrap-form-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Venzhyk/ng-bootstrap-form-generator/issues"
   },
   "private":false,
   "scripts": {
