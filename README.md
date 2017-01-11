@@ -3,19 +3,22 @@
 
 Generate simple Bootstrap4 forms from Json object
 
-Library provides Angular components that help quickly generate Bootstrap 4 form from Java Script object.
-Supports validators, help message, and error message.
+Library provides Angular components that help quickly generate Bootstrap Form from JavaScript object. 
+Component supports validators, help messages, and error messages. 
 
 Based on ReactiveFormsModule from @angular/forms.
 Available custom and all angular built-in validators.
 
-[Demo]((https://embed.plnkr.co/oFBOR6C1ylYquLA8oA4G))
+[Demo](https://embed.plnkr.co/oFBOR6C1ylYquLA8oA4G) 
+
 ## Install
 
 ### Add npm package
 Install npm package into your Angular 2 application
+
 `npm install --save ng-bootstrap-form-generator`
-Once installed you need to import the main module:
+
+Once installed you need to import the main module.
 
 Import the `BootstrapFormGeneratorModule` module into your app module and add it to your app module's imports
 ```typescript
@@ -27,7 +30,7 @@ export class AppModule {
 } 
 ```
 
-### Add bootstrap and jquery
+### Add Bootstrap and jQuery
 
 Add css and scripts into your `index.html`
 ```html
@@ -53,12 +56,12 @@ Add css and scripts into your `index.html`
 Check [Bootstrap 4 Download](https://v4-alpha.getbootstrap.com/getting-started/download/) page for more details
 
 ## Dependencies
-* [Angular 2](https://angular.io) (tested with 2.0.0)
+* [Angular 2](https://angular.io) (tested with <2 class="3 1"></2>)
 * [Bootstrap 4](https://v4-alpha.getbootstrap.com) (tested with 4.0.0-alpha.6)
 
 ## Usage
  Full Demo: https://embed.plnkr.co/oFBOR6C1ylYquLA8oA4G 
- 
+
 ### Create your data model object
 ```typescript
  data =  {
@@ -130,11 +133,12 @@ formConfig = this.formConfig = [
 ```
 ### Initialize `bsf-form`
 
+Snippet below will generate all form fields
 ```html
 <bsf-form [options]='formConfig' [(value)]='data'></bsf-form>
 ```
 
-You can add your own header and footer into `bsf-form`
+Also, you can add your own header and footer into `bsf-form` 
 
 ```html
 <bsf-form [options]='formConfig' [(value)]='data' #regForm>
@@ -149,3 +153,5 @@ You can add your own header and footer into `bsf-form`
 </bsf-form>
 
 ```
+
+[[https://github.com/Venzhyk/ng-bootstrap-form-generator.git/blob/master/demo.png|alt=demo-form]]

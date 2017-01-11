@@ -14,6 +14,7 @@ typings.json
 # Ignored files
 *.ts
 !*.d.ts
+demo-form.png
 
 *.tgz
 .editorconfig
