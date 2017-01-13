@@ -1,6 +1,6 @@
 
-export { BootstrapFormGeneratorModule } from './src/bsf.module';
-export * from './src/bsf.components';
-export * from './src/bsf.control';
-export * from './src/bsf.options';
+export { BootstrapFormGeneratorModule } from './src/bfg.module';
+export * from './src/bfg.components';
+export * from './src/bfg.control';
+export * from './src/bfg.options';
 export * from './src/ValidationMessage';

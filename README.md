@@ -131,26 +131,26 @@ formConfig = this.formConfig = [
     ];
 
 ```
-### Initialize `bsf-form`
+### Initialize `bfg-form`
 
 Snippet below will generate all form fields
 ```html
-<bsf-form [options]='formConfig' [(value)]='data'></bsf-form>
+<bfg-form [options]='formConfig' [(value)]='data'></bfg-form>
 ```
 
-Also, you can add your own header and footer into `bsf-form` 
+Also, you can add your own header and footer into `bfg-form` 
 
 ```html
-<bsf-form [options]='formConfig' [(value)]='data' #regForm>
-  <bsf-before>
+<bfg-form [options]='formConfig' [(value)]='data' #regForm>
+  <bfg-before>
     <h5>New User</h5>
-  </bsf-before>
-  <bsf-after>
+  </bfg-before>
+  <bfg-after>
     <button type="button" class="btn btn-primary" (click)='sendForm(regForm.value, regForm.form.valid)'>Register</button>
     <button type="button" class="btn btn-default" (click)='reset()'>Clear</button>
     <span>{{message}}</span>
-  </bsf-after>
-</bsf-form>
+  </bfg-after>
+</bfg-form>
 
 ```
 

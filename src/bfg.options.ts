@@ -11,7 +11,7 @@ export type InputType = 'text'
   | 'checkbox' | 'hidden' | 'select';
 
 
-export class BsfControlOptions {
+export class BfgControlOptions {
   elId?: string;
   field: string;
   title?: string = null;
@@ -27,7 +27,7 @@ export class BsfControlOptions {
   minlength?: number;
   requiredTrue?: boolean;
 
-  select?: BsfSelectOptions;
+  select?: BfgSelectOptions;
 
   validator?: ValidatorFn | ValidatorFn[];
   asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[];
@@ -35,7 +35,7 @@ export class BsfControlOptions {
 }
 
 
-export class BsfSelectOptions {
+export class BfgSelectOptions {
   options?: [{ text: string, value: any }];
   emptyText?: string;
 }

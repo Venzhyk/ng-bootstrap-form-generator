@@ -9,15 +9,15 @@ import {
 } from '@angular/forms';
 
 import { ValidationMessage, ValidationMessageFn } from './ValidationMessage';
-import { BsfControlOptions, InputType } from './bsf.options';
+import { BfgControlOptions, InputType } from './bfg.options';
 
 
 
-export class BsfControl extends BsfControlOptions {
+export class BfgControl extends BfgControlOptions {
   fc: FormControl;
   errors: string[] = [];
 
-  constructor(options: BsfControlOptions) {
+  constructor(options: BfgControlOptions) {
     super();
 
     let formState = options.defaultValue;
@@ -51,7 +51,7 @@ export class BsfControl extends BsfControlOptions {
 
   }
 
-  applyOptions(fc: FormControl, o: BsfControlOptions) {
+  applyOptions(fc: FormControl, o: BfgControlOptions) {
     Object.assign(this, o, { elId: o.elId || o.field });
     this.validationMessage = Object.assign({}, ValidationMessage.DEFAULT, o.validationMessage);
     if (o.disabled) {

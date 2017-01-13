@@ -11,39 +11,39 @@ import {
   AbstractControl
 } from '@angular/forms';
 
-import { BsfControl } from './bsf.control';
-import { BsfControlOptions, BsfSelectOptions } from './bsf.options';
+import { BfgControl } from './bfg.control';
+import { BfgControlOptions, BfgSelectOptions } from './bfg.options';
 
-@Component({ selector: 'bsf-before,bsf-after', template: '<ng-content></ng-content>' })
-export class BsfGroupCustomContentComponent { }
+@Component({ selector: 'bfg-before,bfg-after', template: '<ng-content></ng-content>' })
+export class BfgGroupCustomContentComponent { }
 
 @Component({
-  selector: 'bsf-form',
+  selector: 'bfg-form',
   template: `
     <div [formGroup]="form" >
-      <ng-content select="bsf-before"></ng-content>
-      <template  ngFor let-control [ngForOf]='bsfControls'>
+      <ng-content select="bfg-before"></ng-content>
+      <template  ngFor let-control [ngForOf]='bfgControls'>
         <div [ngSwitch]="control.type">
-          <bsf-hidden *ngSwitchCase="'hidden'" [control]='control' [form]='form'> </bsf-hidden>
-          <bsf-checkbox *ngSwitchCase="'checkbox'" [control]='control' [form]='form'> </bsf-checkbox>
-          <!-- <bsf-radio *ngSwitchCase="'radio'" [control]='control' [form]='form'> </bsf-radio>-->
-          <bsf-select *ngSwitchCase="'select'" [control]='control' [form]='form'> </bsf-select>
-          <bsf-input *ngSwitchDefault [control]='control' [form]='form'></bsf-input>
+          <bfg-hidden *ngSwitchCase="'hidden'" [control]='control' [form]='form'> </bfg-hidden>
+          <bfg-checkbox *ngSwitchCase="'checkbox'" [control]='control' [form]='form'> </bfg-checkbox>
+          <!-- <bfg-radio *ngSwitchCase="'radio'" [control]='control' [form]='form'> </bfg-radio>-->
+          <bfg-select *ngSwitchCase="'select'" [control]='control' [form]='form'> </bfg-select>
+          <bfg-input *ngSwitchDefault [control]='control' [form]='form'></bfg-input>
         </div>
       </template >
-      <ng-content select="bsf-after"></ng-content>
+      <ng-content select="bfg-after"></ng-content>
     </div>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfGroupComponent implements OnInit {
+export class BfgGroupComponent implements OnInit {
   form: FormGroup;
-  private bsfControls: BsfControl[] = [];
+  private bfgControls: BfgControl[] = [];
 
   private _options: any;
   @Input()
-  get options(): BsfControlOptions[] { return this._options; };
-  set options(value: BsfControlOptions[]) {
+  get options(): BfgControlOptions[] { return this._options; };
+  set options(value: BfgControlOptions[]) {
     this.initFormGroup(value);
     this._options = value;
     this._cd.markForCheck();
@@ -63,17 +63,17 @@ export class BsfGroupComponent implements OnInit {
 
   }
 
-  initFormGroup(options: BsfControlOptions[]) {
+  initFormGroup(options: BfgControlOptions[]) {
     let formControls: { [key: string]: FormControl; } = {};
 
     for (let controlOptions of options) {
-      let control = new BsfControl(controlOptions);
+      let control = new BfgControl(controlOptions);
       // Radio inputs should have same field name to be grouped
       // Override FormControls that have same name 
       // Create all bfsControl for render.
       control.fc = formControls[control.field] || control.fc;
       formControls[control.field] = control.fc;
-      this.bsfControls.push(control);
+      this.bfgControls.push(control);
     }
 
     this.form = new FormGroup(formControls);
@@ -85,7 +85,7 @@ export class BsfGroupComponent implements OnInit {
 }
 
 @Component({
-  selector: 'bsf-control',
+  selector: 'bfg-control',
   template: `
     <div class="form-group"
         [class.has-danger] = '!c.fc.valid && !c.disabled && !c.fc.pristine'
@@ -102,9 +102,9 @@ export class BsfGroupComponent implements OnInit {
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfBaseControlComponent implements OnInit {
+export class BfgBaseControlComponent implements OnInit {
   private _prev: any;
-  @Input('control') c: BsfControl;
+  @Input('control') c: BfgControl;
 
   constructor(private _cd: ChangeDetectorRef) {
   }
@@ -128,71 +128,71 @@ export class BsfBaseControlComponent implements OnInit {
 
 
 @Component({
-  selector: 'bsf-input',
+  selector: 'bfg-input',
   template: `
-    <bsf-control [control]='c'  [formGroup]='form'>
+    <bfg-control [control]='c'  [formGroup]='form'>
       <label [for]='c.field' >{{c.title}}</label>
-      <input class="form-control" [bsfControl]='c' [formControlName]='c.field' [type]='c.type' [placeholder]='c.placeholder' >
-    </bsf-control>
+      <input class="form-control" [bfgControl]='c' [formControlName]='c.field' [type]='c.type' [placeholder]='c.placeholder' >
+    </bfg-control>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfInputControlComponent {
-  @Input('control') c: BsfControl;
+export class BfgInputControlComponent {
+  @Input('control') c: BfgControl;
   @Input() form: FormGroup;
 
 }
 
 @Component({
-  selector: 'bsf-hidden',
+  selector: 'bfg-hidden',
   template: `
     <div [formGroup]='form'>
-      <input class="form-control" [bsfControl]='c' [formControlName]='c.field' type='hidden'>
+      <input class="form-control" [bfgControl]='c' [formControlName]='c.field' type='hidden'>
     </div>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfHiddenInputControlComponent {
-  @Input('control') c: BsfControl;
+export class BfgHiddenInputControlComponent {
+  @Input('control') c: BfgControl;
   @Input() form: FormGroup;
 
 }
 
 
 @Component({
-  selector: 'bsf-checkbox',
+  selector: 'bfg-checkbox',
   template: `
-    <bsf-control [control]='c'  [formGroup]='form'>
+    <bfg-control [control]='c'  [formGroup]='form'>
       <label [for]='c.field'  class='custom-control custom-checkbox'>
-        <input class="custom-control-input" [bsfControl]='c' [formControlName]='c.field' type='checkbox' >
+        <input class="custom-control-input" [bfgControl]='c' [formControlName]='c.field' type='checkbox' >
          <span class="custom-control-indicator"></span>
         <span class="custom-control-description">{{c.title}}</span>
       </label>
-    </bsf-control>
+    </bfg-control>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfCheckboxControlComponent {
-  @Input('control') c: BsfControl;
+export class BfgCheckboxControlComponent {
+  @Input('control') c: BfgControl;
   @Input() form: FormGroup;
 }
 
-// TODO: Implement. After add 'radio' InputType and uncomment ngSwitch in BsfGroupComponent template
+// TODO: Implement. After add 'radio' InputType and uncomment ngSwitch in BfgGroupComponent template
 @Component({
-  selector: 'bsf-radio',
+  selector: 'bfg-radio',
   template: `
-    <bsf-control [control]='c'  [formGroup]='form'>
+    <bfg-control [control]='c'  [formGroup]='form'>
       <label [for]='c.field'  class='custom-control custom-radio'>
-        <input class="custom-control-input" [bsfControl]='c' [formControlName]='c.field' type='radio' >
+        <input class="custom-control-input" [bfgControl]='c' [formControlName]='c.field' type='radio' >
          <span class="custom-control-indicator"></span>
         <span class="custom-control-description">{{c.title}}</span>
       </label>
-    </bsf-control>
+    </bfg-control>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfRadioControlComponent implements OnInit {
-  @Input('control') c: BsfControl;
+export class BfgRadioControlComponent implements OnInit {
+  @Input('control') c: BfgControl;
   @Input() form: FormGroup;
 
   ngOnInit() {
@@ -202,11 +202,11 @@ export class BsfRadioControlComponent implements OnInit {
 
 
 @Component({
-  selector: 'bsf-select',
+  selector: 'bfg-select',
   template: `
-   <bsf-control [control]='c'  [formGroup]='form'>
+   <bfg-control [control]='c'  [formGroup]='form'>
       <label [for]='c.field'>{{c.title}}</label>
-      <select class="form-control custom-select" [bsfControl]='c'  [formControlName]='c.field'>
+      <select class="form-control custom-select" [bfgControl]='c'  [formControlName]='c.field'>
           <option *ngIf='c.select.emptyText' 
                   [attr.disabled] = 'c.required ? "" : null'
                   [attr.selected] = 'c.fc.value === "" ? "" : null'
@@ -214,18 +214,18 @@ export class BsfRadioControlComponent implements OnInit {
           <option *ngFor='let opt of c.select.options' [value]="opt.value" 
                   [attr.selected] ='opt.value === c.fc.value ? "" : null'>{{opt.text}}</option>
       </select>
-  </bsf-control>
+  </bfg-control>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsfSelectControlComponent {
-  @Input('control') c: BsfControl;
+export class BfgSelectControlComponent {
+  @Input('control') c: BfgControl;
   @Input() form: FormGroup;
 }
 
 
 @Directive({
-  selector: '[bsfControl]',
+  selector: '[bfgControl]',
   host: {
     '[id]': 'c.elId',
     '[name]': 'c.field',
@@ -236,6 +236,6 @@ export class BsfSelectControlComponent {
     '[attr.required]': 'c.required',
   }
 })
-export class BsfControlDirective {
-  @Input('bsfControl') c: BsfControl;
+export class BfgControlDirective {
+  @Input('bfgControl') c: BfgControl;
 }

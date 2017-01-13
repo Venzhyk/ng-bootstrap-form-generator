@@ -1,6 +1,6 @@
 
 
-export * from './bsf.components';
-export * from './bsf.options';
+export * from './bfg.components';
+export * from './bfg.options';
 export * from './ValidationMessage';
-export * from './bsf.module';
+export * from './bfg.module';
