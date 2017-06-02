@@ -8,7 +8,7 @@ import { ValidationMessage, ValidationMessageFn } from './ValidationMessage';
 export type InputType = 'text'
   | 'search' | 'email' | 'url' | 'tel' | 'password'
   | 'number' | 'date' | 'color'
-  | 'checkbox' | 'hidden' | 'select';
+  | 'checkbox' | 'hidden' | 'select' | 'radio-button-group';
 
 
 export class BfgControlOptions {

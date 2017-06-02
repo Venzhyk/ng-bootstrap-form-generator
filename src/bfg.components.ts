@@ -28,6 +28,7 @@ export class BfgGroupCustomContentComponent { }
           <bfg-checkbox *ngSwitchCase="'checkbox'" [control]='control' [form]='form'> </bfg-checkbox>
           <!-- <bfg-radio *ngSwitchCase="'radio'" [control]='control' [form]='form'> </bfg-radio>-->
           <bfg-select *ngSwitchCase="'select'" [control]='control' [form]='form'> </bfg-select>
+          <bfg-radio-button-group *ngSwitchCase="'radio-button-group'" [control]='control' [form]='form'></bfg-radio-button-group>
           <bfg-input *ngSwitchDefault [control]='control' [form]='form'></bfg-input>
         </div>
       </template >
@@ -223,6 +224,25 @@ export class BfgSelectControlComponent {
   @Input() form: FormGroup;
 }
 
+@Component({
+  selector: 'bfg-radio-button-group',
+  template: `
+  <bfg-control [control]='c' [formGroup]='form'>
+      <label>{{c.title}}</label><br/>
+      <div class="btn-group" data-toggle="buttons">
+          <label *ngFor="let opt of c.select.options" class="btn btn-secondary" [class.active]="opt.value===c.fc.value"
+          (click)="c.fc.setValue(opt.value)">
+              <input type="radio" name="options" autocomplete="off" [attr.checked]="opt.value===c.fc.value">{{opt.text}}
+          </label>
+      </div>
+  </bfg-control>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class BfgRadioButtonGroupControlComponent {
+  @Input('control') c: BfgControl;
+  @Input() form: FormGroup;
+}
 
 @Directive({
   selector: '[bfgControl]',
