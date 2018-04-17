@@ -9,6 +9,7 @@ import {
   BfgCheckboxControlComponent,
   BfgRadioControlComponent,
   BfgSelectControlComponent,
+  BfgRadioButtonGroupControlComponent,
   BfgGroupComponent,
   BfgGroupCustomContentComponent,
   BfgControlDirective
@@ -31,6 +32,7 @@ import { KeysPipe } from './keys.pipe';
     BfgCheckboxControlComponent,
     BfgRadioControlComponent,
     BfgSelectControlComponent,
+    BfgRadioButtonGroupControlComponent,
     KeysPipe,
     BfgControlDirective
   ],
